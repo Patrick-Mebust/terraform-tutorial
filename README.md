@@ -1,43 +1,85 @@
-# JEPA Experimentation Project
+# Terraform Tutorial Project
 
-This repository contains our experiments with the Joint Embedding Predictive Architecture (JEPA), a novel approach to self-supervised learning developed by Yann LeCun and Meta AI.
+This repository contains a comprehensive tutorial and implementation of Terraform infrastructure as code (IaC) practices, focusing on AWS cloud infrastructure.
 
 ## Project Overview
 
-JEPA represents a significant advancement in self-supervised learning, focusing on learning useful representations by predicting missing information in an input. This project aims to:
+This project demonstrates various aspects of Terraform and AWS infrastructure management, including:
 
-- Implement and experiment with JEPA architectures
-- Explore different prediction tasks and embedding spaces
-- Investigate the effectiveness of JEPA in various domains
-- Compare JEPA with other self-supervised learning approaches
+- AWS EC2 instance provisioning
+- Security group configurations
+- IAM policies and roles
+- Infrastructure state management
+- Best practices for Terraform deployments
 
-## Setup
+## Repository Structure
 
-1. Create a virtual environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-2. Install dependencies:
-```bash
-pip install -e .
-```
-
-## Project Structure
-
-- `src/` - Main source code
+- `aws/` - AWS-specific configurations and resources
+- `src/` - Source code for any associated applications
 - `data/` - Data processing and management
-- `examples/` - Example implementations and use cases
-- `tests/` - Test suite
-- `docs/` - Documentation and research notes
+- `docs/` - Documentation and guides
+- `examples/` - Example Terraform configurations
+- `tests/` - Infrastructure testing
+- `.terraform/` - Terraform state and cache files
+
+## Key Files
+
+- `terraform-ec2-policy.json` - IAM policy for EC2 instance management
+- `terraform-key.pem` - SSH key for EC2 instance access
+- `requirements.txt` - Python dependencies for associated tools
+- `.gitignore` - Comprehensive ignore rules for Terraform and development files
+
+## Setup Instructions
+
+1. Install Terraform:
+```bash
+# For Ubuntu/Debian
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt-get install terraform
+```
+
+2. Configure AWS credentials:
+```bash
+aws configure
+```
+
+3. Initialize Terraform:
+```bash
+terraform init
+```
+
+## Usage
+
+1. Review the planned changes:
+```bash
+terraform plan
+```
+
+2. Apply the infrastructure:
+```bash
+terraform apply
+```
+
+3. Destroy the infrastructure when done:
+```bash
+terraform destroy
+```
+
+## Security Notes
+
+- Never commit sensitive information like AWS credentials or private keys
+- Use environment variables or AWS credentials file for authentication
+- Regularly rotate access keys and certificates
+- Follow the principle of least privilege for IAM roles
 
 ## Contributing
 
-We welcome contributions to this experimental project. Please feel free to:
-- Submit issues for bugs or feature requests
-- Create pull requests for improvements
-- Share your experimental results and findings
+Contributions are welcome! Please:
+- Fork the repository
+- Create a feature branch
+- Submit a pull request with clear documentation
 
 ## License
 
@@ -45,5 +87,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Yann LeCun and the Meta AI team for their work on JEPA
-- The open-source community for their contributions to machine learning research
+- HashiCorp for creating Terraform
+- AWS for their cloud infrastructure services
+- The open-source community for their contributions to infrastructure as code
